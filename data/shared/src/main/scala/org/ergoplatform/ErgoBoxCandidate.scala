@@ -151,9 +151,9 @@ object ErgoBoxCandidate {
         val amount = amounts(i)
         if (tokensInTx.isDefined) {
           val tokenIndex = tokensInTx.get.indexWhere(_ == id, 0) // using equality on Coll
-          if (tokenIndex == -1) sys.error(s"""Failed to locate token ID ($id) in the transaction's digest index.
-               |Please verify the token ID and try again.
-               |For further assistance, consult our transaction documentation.""".stripMargin.replaceAll("\n", " "))
+          if (tokenIndex == -1) sys.error(s"Failed to locate token ID ($id) in the transaction's digest index. " +
+               "Please verify the token ID and try again. " +
+               "For further assistance, consult our transaction documentation.")
           w.putUInt(tokenIndex)
         } else {
           w.putBytes(id.toArray)
@@ -163,10 +163,9 @@ object ErgoBoxCandidate {
 
       val nRegs = box.additionalRegisters.keys.size
       if (nRegs + ErgoBox.startingNonMandatoryIndex > 255)
-        sys.error(
-          s"""The number of non-mandatory indexes ($nRegs) exceeds the maximum limit (${255 - ErgoBox.startingNonMandatoryIndex}).
-             |Please reduce the number of non-mandatory indexes to meet the limit.
-             |For more details, refer to our indexing documentation.""".stripMargin.replaceAll("\n", " "))
+        sys.error(s"The number of non-mandatory indexes ($nRegs) exceeds the maximum limit (${255 - ErgoBox.startingNonMandatoryIndex}). " +
+             "Please reduce the number of non-mandatory indexes to meet the limit. " +
+             "For more details, refer to our indexing documentation.")
       w.putUByte(nRegs)
       // we assume non-mandatory indexes are densely packed from startingNonMandatoryIndex
       // this convention allows to save 1 bite for each register
@@ -178,10 +177,10 @@ object ErgoBoxCandidate {
           case Some(v) =>
             w.putValue(v)
           case None =>
-            sys.error(s"""The set of non-mandatory indexes is not densely packed:
-                 |register R$regId is missing in the range [$startReg .. $endReg].
-                 |Please ensure all registers in this range are sequentially filled.
-                 |For more information, refer to our register packing guidelines.""".stripMargin.replaceAll("\n", " "))
+            sys.error(s"The set of non-mandatory indexes is not densely packed: " +
+                 "register R$regId is missing in the range [$startReg .. $endReg]. " +
+                 "Please ensure all registers in this range are sequentially filled. " +
+                 "For more information, refer to our register packing guidelines.")
         }
       }
     }
