@@ -16,7 +16,7 @@ case class CSigmaProp(sigmaTree: SigmaBoolean) extends SigmaProp with WrapperOf[
   override def isValid: Boolean = sigmaTree match {
     case p: TrivialProp => p.condition
     case _ => sys.error(s"The method CostingSigmaProp.isValid does not apply to $sigmaTree. " +
-      "Make sure to use the correct method for $sigmaTree. " +
+      "Please make sure to use the correct method for $sigmaTree. " +
       "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
   }
 

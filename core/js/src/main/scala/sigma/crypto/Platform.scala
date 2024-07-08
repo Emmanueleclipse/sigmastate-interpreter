@@ -246,7 +246,7 @@ object Platform {
     case c: Coll[_] => tpe match {
       case STuple(items) => c.tItem == sigma.AnyType && c.length == items.length
       case tpeColl: SCollection[_] => true
-      case _ => sys.error(s"The value in the collection $c is not the expected type: $tpe. " +
+      case _ => sys.error(s"The value in the collection $c is not the correct type: $tpe. " +
         "Please make sure the value is of the correct type. " +
         "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     }
