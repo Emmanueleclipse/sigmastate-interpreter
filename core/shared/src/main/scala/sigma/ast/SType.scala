@@ -163,11 +163,13 @@ object SType {
     case _: SOption[_] => x.isInstanceOf[Option[_]]
     case t: STuple =>
       if (t.items.length == 2) x.isInstanceOf[Tuple2[_,_]]
-      else sys.error(s"The type $t is not supported. Please make sure you are using a valid type. " +
+      else sys.error(s"The type $t is not supported. " +
+        "Please make sure you are using a valid type. " +
         "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     case tF: SFunc =>
       if (tF.tDom.length == 1) x.isInstanceOf[Function1[_,_]]
-      else sys.error(s"The type $tF is not supported. Please make sure you are using a valid type. " +
+      else sys.error(s"The type $tF is not supported. " +
+        "Please make sure you are using a valid type. " +
         "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     case SContext => x.isInstanceOf[Context]
     case SAvlTree => x.isInstanceOf[AvlTree]
@@ -175,7 +177,8 @@ object SType {
     case SHeader => x.isInstanceOf[Header]
     case SPreHeader => x.isInstanceOf[PreHeader]
     case SUnit => x.isInstanceOf[Unit]
-    case _ => sys.error(s"We don't recognize the type $tpe. Please check the type and make sure it is correct. " +
+    case _ => sys.error(s"We don't recognize the type $tpe. " +
+      "Please check the type and make sure it is correct. " +
       "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
   }
 

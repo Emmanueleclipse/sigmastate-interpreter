@@ -87,7 +87,8 @@ abstract class Value[+S <: SType] extends SigmaNode {
     if (_sourceContext.isEmpty) {
       _sourceContext = srcCtx
     } else {
-      sys.error("The _sourceContext can only be set once. Please ensure it is set correctly the first time. " +
+      sys.error("The _sourceContext can only be set once. " +
+        "Please ensure it is set correctly the first time. " +
         "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     }
 
@@ -281,7 +282,8 @@ trait ValueCompanion extends SigmaNodeCompanion {
 
   def init() {
     if (this.opCode != 0 && _allOperations.contains(this.opCode))
-      throw sys.error(s"The operation $this is already defined. Please ensure each operation is uniquely defined. " +
+      throw sys.error(s"The operation $this is already defined. " +
+        "Please ensure each operation is uniquely defined. " +
         "If the issue keeps happening, contact <a href=\"#\">Customer care</a>."
       )
     _allOperations += (this.opCode -> this)

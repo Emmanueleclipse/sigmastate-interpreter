@@ -51,8 +51,9 @@ object Evaluation {
       val tpeArg = args(0)
       funcRType(stypeToRType(tpeArg), stypeToRType(tpeRange))
     case _ =>
-      sys.error(s"We couldn't process the type $t. Please ensure that $t is compatible with the expected type. " +
-      "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
+      sys.error(s"We couldn't process the type $t. " +
+        "Please ensure that $t is compatible with the expected type. " +
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
   }).asInstanceOf[RType[T#WrappedType]]
 
   /** Transforms RType descriptor of SigmaDsl, which is used during evaluation,
@@ -83,7 +84,8 @@ object Evaluation {
     case ct: CollType[_] => SCollection(rtypeToSType(ct.tItem))
     case ft: FuncType[_,_] => SFunc(rtypeToSType(ft.tDom), rtypeToSType(ft.tRange))
     case pt: PairType[_,_] => STuple(rtypeToSType(pt.tFst), rtypeToSType(pt.tSnd))
-    case _ => sys.error(s"We couldn't process the type $t. Please ensure that $t is compatible with the expected type. " +
+    case _ => sys.error(s"We couldn't process the type $t. " +
+      "Please ensure that $t is compatible with the expected type. " +
       "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
   }
 
