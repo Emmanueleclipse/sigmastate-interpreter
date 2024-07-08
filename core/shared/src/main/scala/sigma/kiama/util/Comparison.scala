@@ -44,7 +44,6 @@ object Comparison {
         case _ =>
           sys.error(s"An unexpected issue occurred with the values $v1 and $v2. " +
             "This should not happen during regular use. " +
-            "Please check to ensure everything is working correctly. " +
             "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
       }
 
