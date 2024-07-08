@@ -212,7 +212,9 @@ object ErgoBoxCandidate {
           // in v4.x r.getUInt().toInt is used and may return negative Int in which case
           // the error below is thrown
           if (digestIndex < 0 || digestIndex >= nDigests)
-            sys.error(s"failed to find token id with index $digestIndex")
+            sys.error(s"We couldn't find the token ID linked to the index $digestIndex. " +
+              "Please make sure the index value is correct. " +
+              "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
           val amount = r.getULong()           // READ
           tokenIds(i) = digestsInTx(digestIndex)
           tokenAmounts(i) = amount

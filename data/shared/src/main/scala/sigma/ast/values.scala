@@ -60,7 +60,9 @@ abstract class Value[+S <: SType] extends SigmaNode {
   def toSigmaProp: SigmaPropValue = this match {
     case b if b.tpe == SBoolean => BoolToSigmaProp(this.asBoolValue)
     case p if p.tpe == SSigmaProp => p.asSigmaProp
-    case _ => sys.error(s"Expected SBoolean or SSigmaProp typed value, but was: $this")
+    case _ => sys.error(s"The expected value type is SBoolean or SSigmaProp, but the provided type was: $this. " +
+      "Please make sure the value matches the required type. " +
+      "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
   }
 
   /** Parser has some source information like line,column in the text. We need to keep it up until RuntimeCosting.
@@ -85,7 +87,8 @@ abstract class Value[+S <: SType] extends SigmaNode {
     if (_sourceContext.isEmpty) {
       _sourceContext = srcCtx
     } else {
-      sys.error("_sourceContext can be set only once")
+      sys.error("The _sourceContext can only be set once. Please ensure it is set correctly the first time. " +
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     }
 
   /** Defines an evaluation semantics of this tree node (aka Value or expression) in the given data environment.
@@ -98,7 +101,10 @@ abstract class Value[+S <: SType] extends SigmaNode {
     * @return the data value which is the result of evaluation
     */
   protected def eval(env: DataEnv)(implicit E: ErgoTreeEvaluator): Any =
-    sys.error(s"Should be overriden in ${this.getClass}: $this")
+    sys.error(s"This method should be overridden in ${this.getClass}. Current implementation: $this. " +
+      "Please ensure the method is correctly overridden. " +
+      "If the issue keeps happening, contact <a href=\"#\">Customer care</a>."
+    )
 
   /** Evaluates this node to the value of the given expected type.
     * This method should called from all `eval` implementations.

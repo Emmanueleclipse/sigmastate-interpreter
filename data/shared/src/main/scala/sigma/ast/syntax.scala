@@ -73,7 +73,9 @@ object syntax {
       case cc: ConcreteCollection[T]@unchecked => whenConcrete(cc)
       case const: CollectionConstant[T]@unchecked => whenConstant(const)
       case tuple: Tuple => whenTuple(tuple)
-      case _ => sys.error(s"Unexpected node $coll")
+      case _ => sys.error(s"We found an unexpected element: $coll. " +
+        "Please review your input for errors or unsupported elements. " +
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     }
   }
 
