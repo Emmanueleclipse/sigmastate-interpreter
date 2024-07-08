@@ -281,7 +281,9 @@ trait ValueCompanion extends SigmaNodeCompanion {
 
   def init() {
     if (this.opCode != 0 && _allOperations.contains(this.opCode))
-      throw sys.error(s"Operation $this already defined")
+      throw sys.error(s"The operation $this is already defined. Please ensure each operation is uniquely defined. " +
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>."
+      )
     _allOperations += (this.opCode -> this)
   }
 
@@ -369,7 +371,9 @@ case class ConstantNode[S <: SType](value: S#WrappedType, tpe: S) extends Consta
     case SGroupElement if value.isInstanceOf[GroupElement] =>
       s"ConstantNode(${value.asInstanceOf[GroupElement].showToString},$tpe)"
     case SGroupElement =>
-      sys.error(s"Invalid value in Constant($value, $tpe)")
+      sys.error(s"The value $value is invalid for the constant of type $tpe. " +
+        "Please ensure the value matches the expected type and format. " +
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     case SInt => s"IntConstant($value)"
     case SLong => s"LongConstant($value)"
     case SBoolean if value == true => "TrueLeaf"
