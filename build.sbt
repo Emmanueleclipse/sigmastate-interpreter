@@ -23,7 +23,7 @@ lazy val commonSettings = Seq(
       case Some((2, 11)) =>
         Seq()
       case _ => sys.error("The Scala version you are using is not supported. Please use a supported version of Scala. " +
-      "For more details, visit our Scala version compatibility guide.")
+        "If the issue keeps happening, contact <a href=\"#\">Customer care</a>.")
     }
   },
   javacOptions ++= javacReleaseOption,
